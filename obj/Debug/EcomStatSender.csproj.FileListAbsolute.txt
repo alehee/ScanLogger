@@ -1,0 +1,9 @@
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\EcomStatSender.exe.config
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\EcomStatSender.exe
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\EcomStatSender.pdb
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.csprojAssemblyReference.cache
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.EcomStatSender.resources
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.Properties.Resources.resources
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.csproj.GenerateResource.cache
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.exe
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.pdb
