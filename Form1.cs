@@ -15,15 +15,21 @@ namespace EcomStatSender
         int sek;
         int min;
         bool isRunning;
+        bool isReading = false;
         string proces;
         string goodLogin = "aheese11";
 
+        int lart = 0;
+        int keys = 0;
+
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer keyTimer = new System.Windows.Forms.Timer();
 
         public EcomStatSender()
         {
             InitializeComponent();
         }
+
 
         // SKRYPT CO SEKUNDE TIMERA
         private void SekPlusPlus(Object myObject, EventArgs eventArgs)
@@ -53,6 +59,14 @@ namespace EcomStatSender
         }
         // -----
 
+        // SKRYPT ZLICZANIA
+        private void Zliczanie(Object myObject, EventArgs eventArgs)
+        {
+            isReading = false;
+            keys = 0;
+        }
+        // -----
+
         private void EcomStatSender_Load(object sender, EventArgs e)
         {
             sek = 0;
@@ -63,9 +77,16 @@ namespace EcomStatSender
             myTimer.Stop();
             myTimer.Tick += new EventHandler(SekPlusPlus);
             // -----
+
+            // ZLICZANIE KLAWISZY
+            keyTimer.Stop();
+            keyTimer.Interval = 500;
+            keyTimer.Tick += new EventHandler(Zliczanie);
+            keyTimer.Start();
+            // -----
         }
 
-        private void B_StartStop_Click(object sender, EventArgs e)
+        private void B_StartStop_MouseClick(object sender, EventArgs e)
         {
             // ZACZNIJ DZIAŁAĆ
             if (isRunning == false)
@@ -104,6 +125,8 @@ namespace EcomStatSender
                 this.B_StartStop.ForeColor = Color.Green;
                 this.B_StartStop.Text = "START";
             }
+
+            CB_Proces.Focus();
         }
 
         private void B_Login_Click(object sender, EventArgs e)
@@ -126,6 +149,32 @@ namespace EcomStatSender
             {
                 this.L_Error.Text = "Błędny login!";
                 this.L_Error.Visible = true;
+            }
+        }
+
+        private void CB_Proces_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (isRunning && isReading == false)
+            {
+                if(e.KeyCode < Keys.D9 || e.KeyCode > Keys.D0)
+                {
+                    if(isReading == false)
+                        isReading = true;
+                }
+            }
+            else if (isReading)
+            {
+                if (e.KeyCode < Keys.D9 || e.KeyCode > Keys.D0)
+                {
+                    keys++;
+                }
+                if(keys > 29)
+                {
+                    lart++;
+                    keys = 0;
+                    isReading = false;
+                    this.L_Artykuly.Text = lart.ToString();
+                }
             }
         }
     }

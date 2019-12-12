@@ -89,6 +89,7 @@
             this.CB_Proces.Size = new System.Drawing.Size(150, 24);
             this.CB_Proces.TabIndex = 3;
             this.CB_Proces.Visible = false;
+            this.CB_Proces.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CB_Proces_KeyDown);
             // 
             // L_Proces
             // 
@@ -111,10 +112,11 @@
             this.B_StartStop.Name = "B_StartStop";
             this.B_StartStop.Size = new System.Drawing.Size(100, 30);
             this.B_StartStop.TabIndex = 5;
+            this.B_StartStop.TabStop = false;
             this.B_StartStop.Text = "START";
             this.B_StartStop.UseVisualStyleBackColor = true;
             this.B_StartStop.Visible = false;
-            this.B_StartStop.Click += new System.EventHandler(this.B_StartStop_Click);
+            this.B_StartStop.Click += new System.EventHandler(this.B_StartStop_MouseClick);
             // 
             // L_Czas
             // 

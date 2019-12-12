@@ -16,3 +16,14 @@ C:\Projects\C#\EcomStatSender\obj\Debug\EcomStatSender.Properties.Resources.reso
 C:\Projects\C#\EcomStatSender\obj\Debug\EcomStatSender.csproj.GenerateResource.cache
 C:\Projects\C#\EcomStatSender\obj\Debug\EcomStatSender.exe
 C:\Projects\C#\EcomStatSender\obj\Debug\EcomStatSender.pdb
+C:\Projekty\EcomStatSender\bin\Debug\EcomStatSender.exe.config
+C:\Projekty\EcomStatSender\bin\Debug\EcomStatSender.exe
+C:\Projekty\EcomStatSender\bin\Debug\EcomStatSender.pdb
+C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.csprojAssemblyReference.cache
+C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.EcomStatSender.resources
+C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.Properties.Resources.resources
+C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.csproj.GenerateResource.cache
+C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.exe
+C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.pdb
+C:\Projekty\EcomStatSender\bin\Debug\IronBarCode.dll
+C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.csproj.CopyComplete
