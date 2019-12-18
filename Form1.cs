@@ -7,19 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace EcomStatSender
 {
     public partial class EcomStatSender : Form
     {
+        static string PROGRAM_NAME = "EcomStatSender";
+        static string PROGRAM_VERSION = "0.1";
+
+        static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
+
         int sek;
         int min;
         bool isRunning;
         bool isReading = false;
         string proces;
-        string goodLogin = "aheese11";
 
-        int lart = 0;
+        bool goodLogin = false;
+        string login = "";
+
+        int lart = 1;
         int keys = 0;
 
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
@@ -73,6 +82,8 @@ namespace EcomStatSender
             min = 0;
             isRunning = false;
 
+            label1.Text = "Wersja: " + PROGRAM_VERSION;
+
             // TIMER
             myTimer.Stop();
             myTimer.Tick += new EventHandler(SekPlusPlus);
@@ -83,6 +94,46 @@ namespace EcomStatSender
             keyTimer.Interval = 500;
             keyTimer.Tick += new EventHandler(Zliczanie);
             keyTimer.Start();
+            // -----
+
+            // POŁĄCZ Z BAZĄ I ROZPOCZNIJ PROGRAM
+            MySqlConnection conn = new MySqlConnection(DATABASE_CONNECTION);
+            MySqlCommand query = new MySqlCommand(sql, conn);
+            query.CommandTimeout = 30;
+
+            try
+            {
+                conn.Open();
+                MySqlDataReader mySqlDataReader = query.ExecuteReader();
+
+                if (mySqlDataReader.HasRows)
+                {
+                    while (mySqlDataReader.Read())
+                    {
+                        if (mySqlDataReader.GetString(0)==PROGRAM_VERSION)
+                        {
+                            this.B_Login.Visible = true;
+                            this.L_Login.Visible = true;
+                            this.TB_Login.Visible = true;
+                        }
+                        else
+                        {
+                            this.L_Error.Text = "Wersja programu jest nieaktualna!";
+                            this.L_Error.Visible = true;
+                        }
+                    }
+                }
+                else
+                {
+                    this.L_Error.Text = "Sprawdź połączenie internetowe i zrestartuj program!";
+                    this.L_Error.Visible = true;
+                }
+            }
+            catch(Exception e_sql)
+            {
+                this.L_Error.Text = "Wystąpił błąd!";
+                this.L_Error.Visible = true;
+            }
             // -----
         }
 
@@ -116,24 +167,37 @@ namespace EcomStatSender
                     this.L_Error.Visible = true;
                 }
             }
+            // -----
 
             // PRZESTAŃ DZIAŁAĆ
             else
             {
                 myTimer.Stop();
                 isRunning = false;
+
+                sendStats(min, sek, lart);
+                min = 0;
+                sek = 0;
+                lart = 0;
+
+                this.L_Artykuly.Text = "0";
+                this.L_Czas.Text = "0:00";
                 this.B_StartStop.ForeColor = Color.Green;
                 this.B_StartStop.Text = "START";
             }
+            // -----
 
             CB_Proces.Focus();
         }
 
         private void B_Login_Click(object sender, EventArgs e)
         {
-            string login = this.TB_Login.Text.ToString();
+            login = this.TB_Login.Text.ToString();
+
+            goodLogin = isGoodLogin(login);
+
             // JEŻELI DOBRY LOGIN TO ZALOGUJ SIĘ
-            if(login == goodLogin)
+            if(goodLogin)
             {
                 this.L_Error.Visible = false;
                 this.L_Proces.Visible = true;
@@ -149,6 +213,13 @@ namespace EcomStatSender
             {
                 this.L_Error.Text = "Błędny login!";
                 this.L_Error.Visible = true;
+                this.L_Proces.Visible = false;
+                this.CB_Proces.Visible = false;
+                this.L_Czas.Visible = false;
+                this.L_CzasText.Visible = false;
+                this.L_Artykuly.Visible = false;
+                this.L_ArtykulyText.Visible = false;
+                this.B_StartStop.Visible = false;
             }
         }
 
@@ -174,6 +245,64 @@ namespace EcomStatSender
                     keys = 0;
                     isReading = false;
                     this.L_Artykuly.Text = lart.ToString();
+                }
+            }
+        }
+
+        bool isGoodLogin(string possibleLogin)
+        {
+            sql = "SELECT ID FROM users WHERE Login='"+possibleLogin+"'";
+
+            MySqlConnection conn = new MySqlConnection(DATABASE_CONNECTION);
+            MySqlCommand query = new MySqlCommand(sql, conn);
+            query.CommandTimeout = 30;
+
+            try
+            {
+                conn.Open();
+                MySqlDataReader mySqlDataReader = query.ExecuteReader();
+
+                if (mySqlDataReader.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e_sql)
+            {
+                return false;
+            }
+        }
+
+        void sendStats(int statMin, int statSek, int statArt)
+        {
+            if(statSek<=10 && statMin == 0 || statArt<1)
+            {
+                this.L_Error.Text = "Czas lub l.art. zbyt mała!";
+                this.L_Error.Visible = true;
+            }
+            else
+            {
+                string statProces = CB_Proces.SelectedItem.ToString();
+                int statTime = statMin * 60 + statSek;
+                sql = "INSERT INTO stats (ID, UserLogin, Proces, Time, Articles, Date) VALUES (NULL, '"+login+"', '"+statProces+"', '"+statTime+"', '"+statArt+"', CURRENT_TIMESTAMP)";
+
+                MySqlConnection conn = new MySqlConnection(DATABASE_CONNECTION);
+                MySqlCommand query = new MySqlCommand(sql, conn);
+                query.CommandTimeout = 30;
+
+                try
+                {
+                    conn.Open();
+                    MySqlDataReader mySqlDataReader = query.ExecuteReader();
+                }
+                catch (Exception e_sql)
+                {
+                    this.L_Error.Text = "Wystąpił błąd podczas wysyłania danych!";
+                    this.L_Error.Visible = true;
                 }
             }
         }

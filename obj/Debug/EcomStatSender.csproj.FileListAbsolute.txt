@@ -27,3 +27,10 @@ C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.exe
 C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.pdb
 C:\Projekty\EcomStatSender\bin\Debug\IronBarCode.dll
 C:\Projekty\EcomStatSender\obj\Debug\EcomStatSender.csproj.CopyComplete
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\IronBarCode.dll
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\MySql.Data.dll
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\Google.Protobuf.dll
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\BouncyCastle.Crypto.dll
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\Renci.SshNet.dll
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\bin\Debug\MySql.Data.xml
+D:\Proj_Programming\GitHub\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.csproj.CopyComplete
