@@ -16,7 +16,7 @@ namespace EcomStatSender
         static string PROGRAM_NAME = "EcomStatSender";
         static string PROGRAM_VERSION = "0.1";
 
-        static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        static string DATABASE_CONNECTION = "datasource=localhost;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
 
         int sek;
@@ -131,7 +131,7 @@ namespace EcomStatSender
             }
             catch(Exception e_sql)
             {
-                this.L_Error.Text = "Wystąpił błąd!";
+                this.L_Error.Text = e_sql.ToString();
                 this.L_Error.Visible = true;
             }
             // -----
