@@ -16,7 +16,7 @@ namespace EcomStatSender
         static string PROGRAM_NAME = "EcomStatSender";
         static string PROGRAM_VERSION = "0.1";
 
-        static string DATABASE_CONNECTION = "datasource=localhost;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        static string DATABASE_CONNECTION = "datasource=172.19.26.103;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
 
         int sek;
@@ -28,7 +28,7 @@ namespace EcomStatSender
         bool goodLogin = false;
         string login = "";
 
-        int lart = 1;
+        int lart = 0;
         int keys = 0;
 
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
