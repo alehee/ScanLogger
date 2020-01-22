@@ -31,34 +31,42 @@
             this.L_Login = new System.Windows.Forms.Label();
             this.TB_Login = new System.Windows.Forms.TextBox();
             this.B_Login = new System.Windows.Forms.Button();
-            this.CB_Proces = new System.Windows.Forms.ComboBox();
-            this.L_Proces = new System.Windows.Forms.Label();
             this.B_StartStop = new System.Windows.Forms.Button();
             this.L_Czas = new System.Windows.Forms.Label();
             this.L_CzasText = new System.Windows.Forms.Label();
             this.L_Artykuly = new System.Windows.Forms.Label();
             this.L_ArtykulyText = new System.Windows.Forms.Label();
             this.L_Error = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.L_Wersja = new System.Windows.Forms.Label();
+            this.L_Haslo = new System.Windows.Forms.Label();
+            this.TB_Haslo = new System.Windows.Forms.TextBox();
+            this.L_Procesy = new System.Windows.Forms.Label();
+            this.B_PakowanieMONO = new System.Windows.Forms.Button();
+            this.B_ZmienProces = new System.Windows.Forms.Button();
+            this.B_SortowanieVOLU = new System.Windows.Forms.Button();
+            this.B_SortowanieBPIC = new System.Windows.Forms.Button();
+            this.B_PakowanieBPIC = new System.Windows.Forms.Button();
+            this.B_PakowanieVOLU = new System.Windows.Forms.Button();
+            this.B_PakowanieMVOL = new System.Windows.Forms.Button();
+            this.B_Handler = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // L_Login
             // 
             this.L_Login.AutoSize = true;
-            this.L_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.L_Login.Location = new System.Drawing.Point(42, 9);
+            this.L_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.L_Login.Location = new System.Drawing.Point(131, 72);
             this.L_Login.Name = "L_Login";
-            this.L_Login.Padding = new System.Windows.Forms.Padding(30, 20, 30, 10);
-            this.L_Login.Size = new System.Drawing.Size(205, 61);
+            this.L_Login.Size = new System.Drawing.Size(65, 26);
             this.L_Login.TabIndex = 0;
-            this.L_Login.Text = "Twój Login";
+            this.L_Login.Text = "Login";
             this.L_Login.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.L_Login.Visible = false;
             // 
             // TB_Login
             // 
             this.TB_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TB_Login.Location = new System.Drawing.Point(48, 73);
+            this.TB_Login.Location = new System.Drawing.Point(62, 101);
             this.TB_Login.Name = "TB_Login";
             this.TB_Login.Size = new System.Drawing.Size(199, 30);
             this.TB_Login.TabIndex = 1;
@@ -69,7 +77,7 @@
             // 
             this.B_Login.Cursor = System.Windows.Forms.Cursors.Hand;
             this.B_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.B_Login.Location = new System.Drawing.Point(98, 109);
+            this.B_Login.Location = new System.Drawing.Point(110, 199);
             this.B_Login.Margin = new System.Windows.Forms.Padding(30, 3, 30, 3);
             this.B_Login.Name = "B_Login";
             this.B_Login.Size = new System.Drawing.Size(100, 30);
@@ -79,39 +87,12 @@
             this.B_Login.Visible = false;
             this.B_Login.Click += new System.EventHandler(this.B_Login_Click);
             // 
-            // CB_Proces
-            // 
-            this.CB_Proces.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CB_Proces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CB_Proces.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.CB_Proces.FormattingEnabled = true;
-            this.CB_Proces.Items.AddRange(new object[] {
-            "Proces1",
-            "Proces2"});
-            this.CB_Proces.Location = new System.Drawing.Point(92, 191);
-            this.CB_Proces.Name = "CB_Proces";
-            this.CB_Proces.Size = new System.Drawing.Size(150, 24);
-            this.CB_Proces.TabIndex = 3;
-            this.CB_Proces.Visible = false;
-            this.CB_Proces.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CB_Proces_KeyDown);
-            // 
-            // L_Proces
-            // 
-            this.L_Proces.AutoSize = true;
-            this.L_Proces.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.L_Proces.Location = new System.Drawing.Point(34, 194);
-            this.L_Proces.Name = "L_Proces";
-            this.L_Proces.Size = new System.Drawing.Size(52, 17);
-            this.L_Proces.TabIndex = 4;
-            this.L_Proces.Text = "Proces";
-            this.L_Proces.Visible = false;
-            // 
             // B_StartStop
             // 
             this.B_StartStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.B_StartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.B_StartStop.ForeColor = System.Drawing.Color.Green;
-            this.B_StartStop.Location = new System.Drawing.Point(98, 319);
+            this.B_StartStop.Location = new System.Drawing.Point(110, 381);
             this.B_StartStop.Margin = new System.Windows.Forms.Padding(30, 3, 30, 3);
             this.B_StartStop.Name = "B_StartStop";
             this.B_StartStop.Size = new System.Drawing.Size(100, 30);
@@ -125,7 +106,7 @@
             // L_Czas
             // 
             this.L_Czas.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.L_Czas.Location = new System.Drawing.Point(29, 255);
+            this.L_Czas.Location = new System.Drawing.Point(21, 312);
             this.L_Czas.Name = "L_Czas";
             this.L_Czas.Size = new System.Drawing.Size(127, 46);
             this.L_Czas.TabIndex = 6;
@@ -136,7 +117,7 @@
             // L_CzasText
             // 
             this.L_CzasText.AutoSize = true;
-            this.L_CzasText.Location = new System.Drawing.Point(78, 242);
+            this.L_CzasText.Location = new System.Drawing.Point(66, 299);
             this.L_CzasText.Name = "L_CzasText";
             this.L_CzasText.Size = new System.Drawing.Size(30, 13);
             this.L_CzasText.TabIndex = 7;
@@ -147,7 +128,7 @@
             // 
             this.L_Artykuly.AutoSize = true;
             this.L_Artykuly.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.L_Artykuly.Location = new System.Drawing.Point(199, 255);
+            this.L_Artykuly.Location = new System.Drawing.Point(227, 312);
             this.L_Artykuly.Name = "L_Artykuly";
             this.L_Artykuly.Size = new System.Drawing.Size(43, 46);
             this.L_Artykuly.TabIndex = 8;
@@ -158,7 +139,7 @@
             // L_ArtykulyText
             // 
             this.L_ArtykulyText.AutoSize = true;
-            this.L_ArtykulyText.Location = new System.Drawing.Point(196, 242);
+            this.L_ArtykulyText.Location = new System.Drawing.Point(224, 299);
             this.L_ArtykulyText.Name = "L_ArtykulyText";
             this.L_ArtykulyText.Size = new System.Drawing.Size(46, 13);
             this.L_ArtykulyText.TabIndex = 9;
@@ -170,38 +151,169 @@
             this.L_Error.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.L_Error.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.L_Error.ForeColor = System.Drawing.Color.Red;
-            this.L_Error.Location = new System.Drawing.Point(1, 142);
+            this.L_Error.Location = new System.Drawing.Point(2, 22);
             this.L_Error.Name = "L_Error";
-            this.L_Error.Size = new System.Drawing.Size(281, 46);
+            this.L_Error.Size = new System.Drawing.Size(310, 50);
             this.L_Error.TabIndex = 10;
             this.L_Error.Text = "Błędne dane!";
             this.L_Error.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.L_Error.Visible = false;
             // 
-            // label1
+            // L_Wersja
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(204, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Wersja:";
+            this.L_Wersja.AutoSize = true;
+            this.L_Wersja.Location = new System.Drawing.Point(246, 9);
+            this.L_Wersja.Name = "L_Wersja";
+            this.L_Wersja.Size = new System.Drawing.Size(43, 13);
+            this.L_Wersja.TabIndex = 11;
+            this.L_Wersja.Text = "Wersja:";
+            // 
+            // L_Haslo
+            // 
+            this.L_Haslo.AutoSize = true;
+            this.L_Haslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.L_Haslo.Location = new System.Drawing.Point(128, 134);
+            this.L_Haslo.Name = "L_Haslo";
+            this.L_Haslo.Size = new System.Drawing.Size(68, 26);
+            this.L_Haslo.TabIndex = 12;
+            this.L_Haslo.Text = "Hasło";
+            this.L_Haslo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.L_Haslo.Visible = false;
+            // 
+            // TB_Haslo
+            // 
+            this.TB_Haslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TB_Haslo.Location = new System.Drawing.Point(62, 163);
+            this.TB_Haslo.Name = "TB_Haslo";
+            this.TB_Haslo.PasswordChar = '*';
+            this.TB_Haslo.Size = new System.Drawing.Size(199, 30);
+            this.TB_Haslo.TabIndex = 13;
+            this.TB_Haslo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TB_Haslo.Visible = false;
+            // 
+            // L_Procesy
+            // 
+            this.L_Procesy.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.L_Procesy.Location = new System.Drawing.Point(3, 82);
+            this.L_Procesy.Name = "L_Procesy";
+            this.L_Procesy.Size = new System.Drawing.Size(309, 33);
+            this.L_Procesy.TabIndex = 14;
+            this.L_Procesy.Text = "WYBIERZ PROCES";
+            this.L_Procesy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.L_Procesy.Visible = false;
+            // 
+            // B_PakowanieMONO
+            // 
+            this.B_PakowanieMONO.Location = new System.Drawing.Point(12, 129);
+            this.B_PakowanieMONO.Name = "B_PakowanieMONO";
+            this.B_PakowanieMONO.Size = new System.Drawing.Size(136, 28);
+            this.B_PakowanieMONO.TabIndex = 15;
+            this.B_PakowanieMONO.Text = "Pakowanie MONO";
+            this.B_PakowanieMONO.UseVisualStyleBackColor = true;
+            this.B_PakowanieMONO.Visible = false;
+            this.B_PakowanieMONO.Click += new System.EventHandler(this.B_PakowanieMONO_Click);
+            // 
+            // B_ZmienProces
+            // 
+            this.B_ZmienProces.Location = new System.Drawing.Point(194, 273);
+            this.B_ZmienProces.Name = "B_ZmienProces";
+            this.B_ZmienProces.Size = new System.Drawing.Size(95, 23);
+            this.B_ZmienProces.TabIndex = 18;
+            this.B_ZmienProces.Text = "Zmień proces";
+            this.B_ZmienProces.UseVisualStyleBackColor = true;
+            this.B_ZmienProces.Visible = false;
+            this.B_ZmienProces.Click += new System.EventHandler(this.B_ZmienProces_Click);
+            // 
+            // B_SortowanieVOLU
+            // 
+            this.B_SortowanieVOLU.Location = new System.Drawing.Point(166, 129);
+            this.B_SortowanieVOLU.Name = "B_SortowanieVOLU";
+            this.B_SortowanieVOLU.Size = new System.Drawing.Size(136, 28);
+            this.B_SortowanieVOLU.TabIndex = 19;
+            this.B_SortowanieVOLU.Text = "Sortowanie VOLU";
+            this.B_SortowanieVOLU.UseVisualStyleBackColor = true;
+            this.B_SortowanieVOLU.Visible = false;
+            this.B_SortowanieVOLU.Click += new System.EventHandler(this.B_SortowanieVOLU_Click);
+            // 
+            // B_SortowanieBPIC
+            // 
+            this.B_SortowanieBPIC.Location = new System.Drawing.Point(12, 163);
+            this.B_SortowanieBPIC.Name = "B_SortowanieBPIC";
+            this.B_SortowanieBPIC.Size = new System.Drawing.Size(136, 28);
+            this.B_SortowanieBPIC.TabIndex = 20;
+            this.B_SortowanieBPIC.Text = "Sortowanie BPIC";
+            this.B_SortowanieBPIC.UseVisualStyleBackColor = true;
+            this.B_SortowanieBPIC.Visible = false;
+            this.B_SortowanieBPIC.Click += new System.EventHandler(this.B_SortowanieBPIC_Click);
+            // 
+            // B_PakowanieBPIC
+            // 
+            this.B_PakowanieBPIC.Location = new System.Drawing.Point(12, 197);
+            this.B_PakowanieBPIC.Name = "B_PakowanieBPIC";
+            this.B_PakowanieBPIC.Size = new System.Drawing.Size(136, 28);
+            this.B_PakowanieBPIC.TabIndex = 21;
+            this.B_PakowanieBPIC.Text = "Pakowanie BPIC";
+            this.B_PakowanieBPIC.UseVisualStyleBackColor = true;
+            this.B_PakowanieBPIC.Visible = false;
+            this.B_PakowanieBPIC.Click += new System.EventHandler(this.B_PakowanieBPIC_Click);
+            // 
+            // B_PakowanieVOLU
+            // 
+            this.B_PakowanieVOLU.Location = new System.Drawing.Point(166, 163);
+            this.B_PakowanieVOLU.Name = "B_PakowanieVOLU";
+            this.B_PakowanieVOLU.Size = new System.Drawing.Size(136, 28);
+            this.B_PakowanieVOLU.TabIndex = 22;
+            this.B_PakowanieVOLU.Text = "Pakowanie VOLU";
+            this.B_PakowanieVOLU.UseVisualStyleBackColor = true;
+            this.B_PakowanieVOLU.Visible = false;
+            this.B_PakowanieVOLU.Click += new System.EventHandler(this.B_PakowanieVOLU_Click);
+            // 
+            // B_PakowanieMVOL
+            // 
+            this.B_PakowanieMVOL.Location = new System.Drawing.Point(166, 197);
+            this.B_PakowanieMVOL.Name = "B_PakowanieMVOL";
+            this.B_PakowanieMVOL.Size = new System.Drawing.Size(136, 28);
+            this.B_PakowanieMVOL.TabIndex = 23;
+            this.B_PakowanieMVOL.Text = "Pakowanie MVOL";
+            this.B_PakowanieMVOL.UseVisualStyleBackColor = true;
+            this.B_PakowanieMVOL.Visible = false;
+            this.B_PakowanieMVOL.Click += new System.EventHandler(this.B_PakowanieMVOL_Click);
+            // 
+            // B_Handler
+            // 
+            this.B_Handler.FlatAppearance.BorderSize = 0;
+            this.B_Handler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.B_Handler.Location = new System.Drawing.Point(6, 9);
+            this.B_Handler.Name = "B_Handler";
+            this.B_Handler.Size = new System.Drawing.Size(10, 10);
+            this.B_Handler.TabIndex = 24;
+            this.B_Handler.UseVisualStyleBackColor = true;
+            this.B_Handler.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B_Handler_KeyDown);
             // 
             // EcomStatSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(284, 361);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(314, 439);
+            this.Controls.Add(this.B_Handler);
+            this.Controls.Add(this.B_PakowanieMVOL);
+            this.Controls.Add(this.B_PakowanieVOLU);
+            this.Controls.Add(this.B_PakowanieBPIC);
+            this.Controls.Add(this.B_SortowanieBPIC);
+            this.Controls.Add(this.B_SortowanieVOLU);
+            this.Controls.Add(this.B_ZmienProces);
+            this.Controls.Add(this.B_PakowanieMONO);
+            this.Controls.Add(this.L_Procesy);
+            this.Controls.Add(this.TB_Haslo);
+            this.Controls.Add(this.L_Haslo);
+            this.Controls.Add(this.L_Wersja);
             this.Controls.Add(this.L_Error);
             this.Controls.Add(this.L_ArtykulyText);
             this.Controls.Add(this.L_Artykuly);
             this.Controls.Add(this.L_CzasText);
             this.Controls.Add(this.L_Czas);
             this.Controls.Add(this.B_StartStop);
-            this.Controls.Add(this.L_Proces);
-            this.Controls.Add(this.CB_Proces);
             this.Controls.Add(this.B_Login);
             this.Controls.Add(this.TB_Login);
             this.Controls.Add(this.L_Login);
@@ -218,15 +330,24 @@
         private System.Windows.Forms.Label L_Login;
         private System.Windows.Forms.TextBox TB_Login;
         private System.Windows.Forms.Button B_Login;
-        private System.Windows.Forms.ComboBox CB_Proces;
-        private System.Windows.Forms.Label L_Proces;
         private System.Windows.Forms.Button B_StartStop;
         private System.Windows.Forms.Label L_Czas;
         private System.Windows.Forms.Label L_CzasText;
         private System.Windows.Forms.Label L_Artykuly;
         private System.Windows.Forms.Label L_ArtykulyText;
         private System.Windows.Forms.Label L_Error;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label L_Wersja;
+        private System.Windows.Forms.Label L_Haslo;
+        private System.Windows.Forms.TextBox TB_Haslo;
+        private System.Windows.Forms.Label L_Procesy;
+        private System.Windows.Forms.Button B_PakowanieMONO;
+        private System.Windows.Forms.Button B_ZmienProces;
+        private System.Windows.Forms.Button B_SortowanieVOLU;
+        private System.Windows.Forms.Button B_SortowanieBPIC;
+        private System.Windows.Forms.Button B_PakowanieBPIC;
+        private System.Windows.Forms.Button B_PakowanieVOLU;
+        private System.Windows.Forms.Button B_PakowanieMVOL;
+        private System.Windows.Forms.Button B_Handler;
     }
 }
 
