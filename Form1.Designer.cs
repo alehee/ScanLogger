@@ -288,7 +288,6 @@
             this.B_Handler.Size = new System.Drawing.Size(10, 10);
             this.B_Handler.TabIndex = 24;
             this.B_Handler.UseVisualStyleBackColor = true;
-            this.B_Handler.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B_Handler_KeyDown);
             // 
             // EcomStatSender
             // 

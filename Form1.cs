@@ -16,6 +16,8 @@ namespace EcomStatSender
         static string PROGRAM_NAME = "EcomStatSender";
         static string PROGRAM_VERSION = "0.1";
 
+        private LowLevelKeyboardListener _listener;
+
         //static string DATABASE_CONNECTION = "datasource=172.19.26.103;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
@@ -99,6 +101,11 @@ namespace EcomStatSender
             keyTimer.Start();
             // -----
 
+            _listener = new LowLevelKeyboardListener();
+            _listener.OnKeyPressed += _listener_OnKeyPressed;
+
+            _listener.HookKeyboard();
+
             // POŁĄCZ Z BAZĄ I ROZPOCZNIJ PROGRAM
             MySqlConnection conn = new MySqlConnection(DATABASE_CONNECTION);
             MySqlCommand query = new MySqlCommand(sql, conn);
@@ -141,6 +148,16 @@ namespace EcomStatSender
             }
             // -----
         }
+
+        /*void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
+        {
+            lart++;
+            this.L_Artykuly.Text = lart.ToString();
+            this.L_Error.Visible = true;
+            this.L_Error.Text = e.KeyPressed.ToString();
+        }*/
+
+        // jeszcze gdzies na koncu _listener.UnHookKeyboard();
 
         private void B_StartStop_MouseClick(object sender, EventArgs e)
         {
@@ -203,7 +220,6 @@ namespace EcomStatSender
             password = this.TB_Haslo.Text.ToString();
 
             goodLogin = isGoodLogin(login, password);
-            goodLogin = true;
             // JEŻELI DOBRY LOGIN TO ZALOGUJ SIĘ
             if(goodLogin)
             {
@@ -253,11 +269,11 @@ namespace EcomStatSender
             }
         }
 
-        private void B_Handler_KeyDown(object sender, KeyEventArgs e)
+        void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             if (isRunning && isReading == false)
             {
-                if(e.KeyCode < Keys.D9 || e.KeyCode > Keys.D0)
+                if(e.KeyPressed < 59 || e.KeyPressed > 47)
                 {
                     if(isReading == false)
                         isReading = true;
@@ -265,7 +281,7 @@ namespace EcomStatSender
             }
             else if (isReading)
             {
-                if (e.KeyCode < Keys.D9 || e.KeyCode > Keys.D0)
+                if (e.KeyPressed < 59 || e.KeyPressed > 47)
                 {
                     keys++;
                 }
