@@ -49,6 +49,8 @@
             this.B_PakowanieVOLU = new System.Windows.Forms.Button();
             this.B_PakowanieMVOL = new System.Windows.Forms.Button();
             this.B_Handler = new System.Windows.Forms.Button();
+            this.B_Zwroty = new System.Windows.Forms.Button();
+            this.B_Entropy = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // L_Login
@@ -289,12 +291,36 @@
             this.B_Handler.TabIndex = 24;
             this.B_Handler.UseVisualStyleBackColor = true;
             // 
+            // B_Zwroty
+            // 
+            this.B_Zwroty.Location = new System.Drawing.Point(12, 231);
+            this.B_Zwroty.Name = "B_Zwroty";
+            this.B_Zwroty.Size = new System.Drawing.Size(136, 28);
+            this.B_Zwroty.TabIndex = 25;
+            this.B_Zwroty.Text = "Zwroty";
+            this.B_Zwroty.UseVisualStyleBackColor = true;
+            this.B_Zwroty.Visible = false;
+            this.B_Zwroty.Click += new System.EventHandler(this.B_Zwroty_Click);
+            // 
+            // B_Entropy
+            // 
+            this.B_Entropy.Location = new System.Drawing.Point(166, 231);
+            this.B_Entropy.Name = "B_Entropy";
+            this.B_Entropy.Size = new System.Drawing.Size(136, 28);
+            this.B_Entropy.TabIndex = 26;
+            this.B_Entropy.Text = "Entropy";
+            this.B_Entropy.UseVisualStyleBackColor = true;
+            this.B_Entropy.Visible = false;
+            this.B_Entropy.Click += new System.EventHandler(this.B_Entropy_Click);
+            // 
             // EcomStatSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(314, 439);
+            this.Controls.Add(this.B_Entropy);
+            this.Controls.Add(this.B_Zwroty);
             this.Controls.Add(this.B_Handler);
             this.Controls.Add(this.B_PakowanieMVOL);
             this.Controls.Add(this.B_PakowanieVOLU);
@@ -347,6 +373,8 @@
         private System.Windows.Forms.Button B_PakowanieVOLU;
         private System.Windows.Forms.Button B_PakowanieMVOL;
         private System.Windows.Forms.Button B_Handler;
+        private System.Windows.Forms.Button B_Zwroty;
+        private System.Windows.Forms.Button B_Entropy;
     }
 }
 

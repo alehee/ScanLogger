@@ -241,6 +241,8 @@ namespace EcomStatSender
                 this.B_SortowanieVOLU.Visible = true;
                 this.B_PakowanieVOLU.Visible = true;
                 this.B_PakowanieMVOL.Visible = true;
+                this.B_Zwroty.Visible = true;
+                this.B_Entropy.Visible = true;
                 this.B_ZmienProces.Visible = false;
             }
             // JEŻELI NIE WYŚWIETL ERROR
@@ -265,6 +267,8 @@ namespace EcomStatSender
                 this.B_SortowanieVOLU.Visible = false;
                 this.B_PakowanieVOLU.Visible = false;
                 this.B_PakowanieMVOL.Visible = false;
+                this.B_Zwroty.Visible = false;
+                this.B_Entropy.Visible = false;
                 this.B_ZmienProces.Visible = false;
             }
         }
@@ -363,6 +367,8 @@ namespace EcomStatSender
             this.B_SortowanieVOLU.Visible = true;
             this.B_PakowanieVOLU.Visible = true;
             this.B_PakowanieMVOL.Visible = true;
+            this.B_Zwroty.Visible = true;
+            this.B_Entropy.Visible = true;
             this.B_ZmienProces.Visible = false;
             this.L_Czas.Visible = false;
             this.L_CzasText.Visible = false;
@@ -381,6 +387,8 @@ namespace EcomStatSender
             this.B_SortowanieVOLU.Visible = false;
             this.B_PakowanieVOLU.Visible = false;
             this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
             this.B_ZmienProces.Visible = true;
             this.L_Czas.Visible = true;
             this.L_CzasText.Visible = true;
@@ -399,6 +407,8 @@ namespace EcomStatSender
             this.B_SortowanieVOLU.Visible = false;
             this.B_PakowanieVOLU.Visible = false;
             this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
             this.B_ZmienProces.Visible = true;
             this.L_Czas.Visible = true;
             this.L_CzasText.Visible = true;
@@ -417,6 +427,8 @@ namespace EcomStatSender
             this.B_SortowanieVOLU.Visible = false;
             this.B_PakowanieVOLU.Visible = false;
             this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
             this.B_ZmienProces.Visible = true;
             this.L_Czas.Visible = true;
             this.L_CzasText.Visible = true;
@@ -435,6 +447,8 @@ namespace EcomStatSender
             this.B_SortowanieVOLU.Visible = false;
             this.B_PakowanieVOLU.Visible = false;
             this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
             this.B_ZmienProces.Visible = true;
             this.L_Czas.Visible = true;
             this.L_CzasText.Visible = true;
@@ -453,6 +467,8 @@ namespace EcomStatSender
             this.B_SortowanieVOLU.Visible = false;
             this.B_PakowanieVOLU.Visible = false;
             this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
             this.B_ZmienProces.Visible = true;
             this.L_Czas.Visible = true;
             this.L_CzasText.Visible = true;
@@ -471,6 +487,48 @@ namespace EcomStatSender
             this.B_SortowanieVOLU.Visible = false;
             this.B_PakowanieVOLU.Visible = false;
             this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
+            this.B_ZmienProces.Visible = true;
+            this.L_Czas.Visible = true;
+            this.L_CzasText.Visible = true;
+            this.L_Artykuly.Visible = true;
+            this.L_ArtykulyText.Visible = true;
+            this.B_StartStop.Visible = true;
+        }
+
+        private void B_Zwroty_Click(object sender, EventArgs e)
+        {
+            wybranyProces = "Zwroty";
+            this.L_Procesy.Visible = false;
+            this.B_PakowanieMONO.Visible = false;
+            this.B_SortowanieBPIC.Visible = false;
+            this.B_PakowanieBPIC.Visible = false;
+            this.B_SortowanieVOLU.Visible = false;
+            this.B_PakowanieVOLU.Visible = false;
+            this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
+            this.B_ZmienProces.Visible = true;
+            this.L_Czas.Visible = true;
+            this.L_CzasText.Visible = true;
+            this.L_Artykuly.Visible = true;
+            this.L_ArtykulyText.Visible = true;
+            this.B_StartStop.Visible = true;
+        }
+
+        private void B_Entropy_Click(object sender, EventArgs e)
+        {
+            wybranyProces = "Entropy";
+            this.L_Procesy.Visible = false;
+            this.B_PakowanieMONO.Visible = false;
+            this.B_SortowanieBPIC.Visible = false;
+            this.B_PakowanieBPIC.Visible = false;
+            this.B_SortowanieVOLU.Visible = false;
+            this.B_PakowanieVOLU.Visible = false;
+            this.B_PakowanieMVOL.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.B_Entropy.Visible = false;
             this.B_ZmienProces.Visible = true;
             this.L_Czas.Visible = true;
             this.L_CzasText.Visible = true;
