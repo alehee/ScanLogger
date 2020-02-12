@@ -48,9 +48,10 @@
             this.B_PakowanieBPIC = new System.Windows.Forms.Button();
             this.B_PakowanieVOLU = new System.Windows.Forms.Button();
             this.B_PakowanieMVOL = new System.Windows.Forms.Button();
-            this.B_Handler = new System.Windows.Forms.Button();
             this.B_Zwroty = new System.Windows.Forms.Button();
             this.B_Entropy = new System.Windows.Forms.Button();
+            this.B_Logout = new System.Windows.Forms.Button();
+            this.L_Active = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // L_Login
@@ -83,7 +84,7 @@
             this.B_Login.Margin = new System.Windows.Forms.Padding(30, 3, 30, 3);
             this.B_Login.Name = "B_Login";
             this.B_Login.Size = new System.Drawing.Size(100, 30);
-            this.B_Login.TabIndex = 2;
+            this.B_Login.TabIndex = 3;
             this.B_Login.Text = "Zaloguj";
             this.B_Login.UseVisualStyleBackColor = true;
             this.B_Login.Visible = false;
@@ -189,7 +190,7 @@
             this.TB_Haslo.Name = "TB_Haslo";
             this.TB_Haslo.PasswordChar = '*';
             this.TB_Haslo.Size = new System.Drawing.Size(199, 30);
-            this.TB_Haslo.TabIndex = 13;
+            this.TB_Haslo.TabIndex = 2;
             this.TB_Haslo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TB_Haslo.Visible = false;
             // 
@@ -281,16 +282,6 @@
             this.B_PakowanieMVOL.Visible = false;
             this.B_PakowanieMVOL.Click += new System.EventHandler(this.B_PakowanieMVOL_Click);
             // 
-            // B_Handler
-            // 
-            this.B_Handler.FlatAppearance.BorderSize = 0;
-            this.B_Handler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.B_Handler.Location = new System.Drawing.Point(6, 9);
-            this.B_Handler.Name = "B_Handler";
-            this.B_Handler.Size = new System.Drawing.Size(10, 10);
-            this.B_Handler.TabIndex = 24;
-            this.B_Handler.UseVisualStyleBackColor = true;
-            // 
             // B_Zwroty
             // 
             this.B_Zwroty.Location = new System.Drawing.Point(12, 231);
@@ -313,15 +304,36 @@
             this.B_Entropy.Visible = false;
             this.B_Entropy.Click += new System.EventHandler(this.B_Entropy_Click);
             // 
+            // B_Logout
+            // 
+            this.B_Logout.Location = new System.Drawing.Point(8, 4);
+            this.B_Logout.Name = "B_Logout";
+            this.B_Logout.Size = new System.Drawing.Size(75, 23);
+            this.B_Logout.TabIndex = 27;
+            this.B_Logout.Text = "Wyloguj";
+            this.B_Logout.UseVisualStyleBackColor = true;
+            this.B_Logout.Visible = false;
+            this.B_Logout.Click += new System.EventHandler(this.B_Logout_Click);
+            // 
+            // L_Active
+            // 
+            this.L_Active.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.L_Active.Location = new System.Drawing.Point(89, 4);
+            this.L_Active.Name = "L_Active";
+            this.L_Active.Size = new System.Drawing.Size(151, 23);
+            this.L_Active.TabIndex = 28;
+            this.L_Active.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // EcomStatSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(314, 439);
+            this.Controls.Add(this.L_Active);
+            this.Controls.Add(this.B_Logout);
             this.Controls.Add(this.B_Entropy);
             this.Controls.Add(this.B_Zwroty);
-            this.Controls.Add(this.B_Handler);
             this.Controls.Add(this.B_PakowanieMVOL);
             this.Controls.Add(this.B_PakowanieVOLU);
             this.Controls.Add(this.B_PakowanieBPIC);
@@ -343,7 +355,7 @@
             this.Controls.Add(this.TB_Login);
             this.Controls.Add(this.L_Login);
             this.Name = "EcomStatSender";
-            this.Text = "EcomStatSender";
+            this.Text = "Liczpak";
             this.Load += new System.EventHandler(this.EcomStatSender_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -372,9 +384,10 @@
         private System.Windows.Forms.Button B_PakowanieBPIC;
         private System.Windows.Forms.Button B_PakowanieVOLU;
         private System.Windows.Forms.Button B_PakowanieMVOL;
-        private System.Windows.Forms.Button B_Handler;
         private System.Windows.Forms.Button B_Zwroty;
         private System.Windows.Forms.Button B_Entropy;
+        private System.Windows.Forms.Button B_Logout;
+        private System.Windows.Forms.Label L_Active;
     }
 }
 

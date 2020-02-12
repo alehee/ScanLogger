@@ -18,8 +18,8 @@ namespace EcomStatSender
 
         private LowLevelKeyboardListener _listener;
 
-        static string DATABASE_CONNECTION = "datasource=172.19.26.128;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
-        //static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        //static string DATABASE_CONNECTION = "datasource=172.19.26.128;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
 
         int sek;
@@ -38,12 +38,51 @@ namespace EcomStatSender
 
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer keyTimer = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer logoutTimer = new System.Windows.Forms.Timer();
 
         public EcomStatSender()
         {
             InitializeComponent();
         }
 
+        // SKRYPT WYLOGOWANIA PO 10 MIN
+        private void TimeLogout(Object myObject, EventArgs eventArgs)
+        {
+            login = "";
+            password = "";
+            goodLogin = false;
+            isReading = false;
+            wybranyProces = "none";
+
+            this.L_Active.Text = "";
+            this.TB_Haslo.Text = "";
+            this.L_Error.Text = "Wylogowano z powodu nieaktywności";
+
+            this.B_Entropy.Visible = false;
+            this.B_Logout.Visible = false;
+            this.B_PakowanieBPIC.Visible = false;
+            this.B_PakowanieMONO.Visible = false;
+            this.B_PakowanieMVOL.Visible = false;
+            this.B_PakowanieVOLU.Visible = false;
+            this.B_SortowanieBPIC.Visible = false;
+            this.B_SortowanieVOLU.Visible = false;
+            this.B_StartStop.Visible = false;
+            this.B_ZmienProces.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.L_Artykuly.Visible = false;
+            this.L_ArtykulyText.Visible = false;
+            this.L_Czas.Visible = false;
+            this.L_CzasText.Visible = false;
+            this.L_Procesy.Visible = false;
+
+            this.B_Login.Visible = true;
+            this.L_Error.Visible = true;
+            this.L_Haslo.Visible = true;
+            this.L_Login.Visible = true;
+            this.TB_Haslo.Visible = true;
+            this.TB_Login.Visible = true;
+        }
+        // -----
 
         // SKRYPT CO SEKUNDE TIMERA
         private void SekPlusPlus(Object myObject, EventArgs eventArgs)
@@ -89,6 +128,12 @@ namespace EcomStatSender
 
             L_Wersja.Text = "Wersja: " + PROGRAM_VERSION;
 
+            // WYLOGOWANIE PO 10 MIN
+            logoutTimer.Stop();
+            logoutTimer.Interval = 600000;
+            logoutTimer.Tick += new EventHandler(TimeLogout);
+            // -----
+
             // TIMER
             myTimer.Stop();
             myTimer.Tick += new EventHandler(SekPlusPlus);
@@ -96,7 +141,7 @@ namespace EcomStatSender
 
             // ZLICZANIE KLAWISZY
             keyTimer.Stop();
-            keyTimer.Interval = 800;
+            keyTimer.Interval = 1000;
             keyTimer.Tick += new EventHandler(Zliczanie);
             keyTimer.Start();
             // -----
@@ -143,19 +188,11 @@ namespace EcomStatSender
             }
             catch(Exception e_sql)
             {
-                this.L_Error.Text = e_sql.ToString();
+                this.L_Error.Text = "Błąd połączenia z bazą danych!";
                 this.L_Error.Visible = true;
             }
             // -----
         }
-
-        /*void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
-        {
-            lart++;
-            this.L_Artykuly.Text = lart.ToString();
-            this.L_Error.Visible = true;
-            this.L_Error.Text = e.KeyPressed.ToString();
-        }*/
 
         // jeszcze gdzies na koncu _listener.UnHookKeyboard();
 
@@ -181,13 +218,16 @@ namespace EcomStatSender
                     this.B_StartStop.ForeColor = Color.Red;
                     this.B_StartStop.Text = "STOP";
                     this.B_ZmienProces.Enabled = false;
+                    this.B_Logout.Visible = false;
                     myTimer.Interval = 1000;
                     myTimer.Start();
+                    logoutTimer.Stop();
                 }
                 else
                 {
                     this.L_Error.Text = "Wybierz proces!";
                     this.L_Error.Visible = true;
+                    logoutTimer.Start();
                 }
             }
             // -----
@@ -208,10 +248,11 @@ namespace EcomStatSender
                 this.B_StartStop.ForeColor = Color.Green;
                 this.B_StartStop.Text = "START";
                 this.B_ZmienProces.Enabled = true;
+                this.B_Logout.Visible = true;
+
+                logoutTimer.Start();
             }
             // -----
-
-            B_Handler.Focus();
         }
 
         private void B_Login_Click(object sender, EventArgs e)
@@ -223,6 +264,8 @@ namespace EcomStatSender
             // JEŻELI DOBRY LOGIN TO ZALOGUJ SIĘ
             if(goodLogin)
             {
+                this.L_Active.Text = login;
+
                 this.L_Error.Visible = false;
                 this.L_Czas.Visible = false;
                 this.L_CzasText.Visible = false;
@@ -235,6 +278,7 @@ namespace EcomStatSender
                 this.TB_Haslo.Visible = false;
                 this.B_Login.Visible = false;
                 this.L_Procesy.Visible = true;
+                this.B_Logout.Visible = true;
                 this.B_PakowanieMONO.Visible = true;
                 this.B_SortowanieBPIC.Visible = true;
                 this.B_PakowanieBPIC.Visible = true;
@@ -244,6 +288,8 @@ namespace EcomStatSender
                 this.B_Zwroty.Visible = true;
                 this.B_Entropy.Visible = true;
                 this.B_ZmienProces.Visible = false;
+
+                logoutTimer.Start();
             }
             // JEŻELI NIE WYŚWIETL ERROR
             else
@@ -261,6 +307,7 @@ namespace EcomStatSender
                 this.TB_Haslo.Visible = true;
                 this.B_Login.Visible = true;
                 this.L_Procesy.Visible = false;
+                this.B_Logout.Visible = false;
                 this.B_PakowanieMONO.Visible = false;
                 this.B_SortowanieBPIC.Visible = false;
                 this.B_PakowanieBPIC.Visible = false;
@@ -361,6 +408,7 @@ namespace EcomStatSender
         {
             wybranyProces = "";
             this.L_Procesy.Visible = true;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = true;
             this.B_SortowanieBPIC.Visible = true;
             this.B_PakowanieBPIC.Visible = true;
@@ -381,6 +429,7 @@ namespace EcomStatSender
         {
             wybranyProces = "Pakowanie MONO";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -395,12 +444,15 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1000;
         }
 
         private void B_SortowanieBPIC_Click(object sender, EventArgs e)
         {
             wybranyProces = "Sortowanie BPIC";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -415,12 +467,15 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1500;
         }
 
         private void B_PakowanieBPIC_Click(object sender, EventArgs e)
         {
             wybranyProces = "Pakowanie BPIC";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -435,12 +490,15 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1500;
         }
 
         private void B_SortowanieVOLU_Click(object sender, EventArgs e)
         {
             wybranyProces = "Sortowanie VOLU";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -455,12 +513,15 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1500;
         }
 
         private void B_PakowanieVOLU_Click(object sender, EventArgs e)
         {
             wybranyProces = "Pakowanie VOLU";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -475,12 +536,15 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1500;
         }
 
         private void B_PakowanieMVOL_Click(object sender, EventArgs e)
         {
             wybranyProces = "Pakowanie MVOL";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -495,12 +559,15 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1500;
         }
 
         private void B_Zwroty_Click(object sender, EventArgs e)
         {
             wybranyProces = "Zwroty";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -515,12 +582,15 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1500;
         }
 
         private void B_Entropy_Click(object sender, EventArgs e)
         {
             wybranyProces = "Entropy";
             this.L_Procesy.Visible = false;
+            this.B_Logout.Visible = true;
             this.B_PakowanieMONO.Visible = false;
             this.B_SortowanieBPIC.Visible = false;
             this.B_PakowanieBPIC.Visible = false;
@@ -535,6 +605,45 @@ namespace EcomStatSender
             this.L_Artykuly.Visible = true;
             this.L_ArtykulyText.Visible = true;
             this.B_StartStop.Visible = true;
+
+            keyTimer.Interval = 1500;
+        }
+
+        private void B_Logout_Click(object sender, EventArgs e)
+        {
+            login = "";
+            password = "";
+            goodLogin = false;
+            isReading = false;
+            wybranyProces = "none";
+
+            this.L_Active.Text = "";
+            this.TB_Haslo.Text = "";
+            this.L_Error.Text = "Wylogowano pomyślnie";
+
+            this.B_Entropy.Visible = false;
+            this.B_Logout.Visible = false;
+            this.B_PakowanieBPIC.Visible = false;
+            this.B_PakowanieMONO.Visible = false;
+            this.B_PakowanieMVOL.Visible = false;
+            this.B_PakowanieVOLU.Visible = false;
+            this.B_SortowanieBPIC.Visible = false;
+            this.B_SortowanieVOLU.Visible = false;
+            this.B_StartStop.Visible = false;
+            this.B_ZmienProces.Visible = false;
+            this.B_Zwroty.Visible = false;
+            this.L_Artykuly.Visible = false;
+            this.L_ArtykulyText.Visible = false;
+            this.L_Czas.Visible = false;
+            this.L_CzasText.Visible = false;
+            this.L_Procesy.Visible = false;
+
+            this.B_Login.Visible = true;
+            this.L_Error.Visible = true;
+            this.L_Haslo.Visible = true;
+            this.L_Login.Visible = true;
+            this.TB_Haslo.Visible = true;
+            this.TB_Login.Visible = true;
         }
     }
 }

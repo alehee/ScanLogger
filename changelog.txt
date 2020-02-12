@@ -1,0 +1,10 @@
+0.2.0 --- 
+
+Nowości:
+- przycisk wylogowania
+- informacja kto jest zalogowany
+- automatyczne wylogowanie po 10 min
+
+Naprawione błędy:
+- zwiększenie efektywności programu
+- czytelniejsze błędy programu
