@@ -29,6 +29,8 @@ namespace EcomStatSender
         string proces;
         string wybranyProces = "none";
 
+        string[] codeBuffer = new string[50];
+
         bool goodLogin = false;
         string login = "";
         string password = "";
