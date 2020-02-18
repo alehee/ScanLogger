@@ -26,10 +26,17 @@ namespace EcomStatSender
         int min;
         bool isRunning;
         bool isReading = false;
+
+        // 0 - nie ruszone
+        // 1 - skaner git
+        // 2 - przekazane do RFID
+        short isStatus = 0;
+
         string proces;
         string wybranyProces = "none";
 
         string[] codeBuffer = new string[50];
+        string singleCodeBuffer = "";
 
         bool goodLogin = false;
         string login = "";
@@ -40,6 +47,8 @@ namespace EcomStatSender
 
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer keyTimer = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer scannerTimer = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer bufferTimer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer logoutTimer = new System.Windows.Forms.Timer();
 
         public EcomStatSender()
@@ -114,11 +123,38 @@ namespace EcomStatSender
         }
         // -----
 
-        // SKRYPT ZLICZANIA
-        private void Zliczanie(Object myObject, EventArgs eventArgs)
+        // SKRYPT ZLICZANIA OGÓLNEGO
+        private void Zliczanie_Ogolne(Object myObject, EventArgs eventArgs)
         {
             isReading = false;
             keys = 0;
+            isStatus = 0;
+        }
+        // -----
+
+        // SKRYPT ZLICZANIA SKANERA
+        private void Zliczanie_Skaner(Object myObject, EventArgs eventArgs)
+        {
+            if(isStatus != 1)
+            {
+                isReading = false;
+                keys = 0;
+                isStatus = 0;
+            }
+        }
+        // -----
+
+        // SKRYPT ZLICZANIA SKANERA
+        private void Bufor_Zliczania(Object myObject, EventArgs eventArgs)
+        {
+            if(isStatus != 2)
+            {
+                isReading = false;
+                keys = 0;
+                isStatus = 0;
+                lart++;
+                this.L_Artykuly.Text = lart.ToString();
+            }
         }
         // -----
 
@@ -143,9 +179,23 @@ namespace EcomStatSender
 
             // ZLICZANIE KLAWISZY
             keyTimer.Stop();
-            keyTimer.Interval = 1000;
-            keyTimer.Tick += new EventHandler(Zliczanie);
-            keyTimer.Start();
+            keyTimer.Interval = 500;
+            keyTimer.Tick += new EventHandler(Zliczanie_Ogolne);
+            // keyTimer.Start();
+            // -----
+
+            // ZLICZANIE TIMERA
+            scannerTimer.Stop();
+            scannerTimer.Interval = 500;
+            scannerTimer.Tick += new EventHandler(Zliczanie_Skaner);
+            // scannerTimer.Start();
+            // -----
+
+            // BUFOR ZLICZANIA
+            bufferTimer.Stop();
+            bufferTimer.Interval = 100;
+            bufferTimer.Tick += new EventHandler(Bufor_Zliczania);
+            // bufferTimer.Start();
             // -----
 
             _listener = new LowLevelKeyboardListener();
@@ -196,7 +246,7 @@ namespace EcomStatSender
             // -----
         }
 
-        // jeszcze gdzies na koncu _listener.UnHookKeyboard();
+        // powinno gdzieś być _listener.UnHookKeyboard(); ale nie ma
 
         private void B_StartStop_MouseClick(object sender, EventArgs e)
         {
@@ -328,20 +378,41 @@ namespace EcomStatSender
             {
                 if(e.KeyPressed < 59 || e.KeyPressed > 47)
                 {
-                    if(isReading == false)
+                    if(isReading == false) 
+                    { 
                         isReading = true;
+                        scannerTimer.Start();
+                    }
                 }
             }
+
             else if (isReading)
             {
                 if (e.KeyPressed < 59 || e.KeyPressed > 47)
                 {
                     keys++;
                 }
-                if(keys > 25)
+
+                if(keys > 12)
+                {
+                    isStatus = 1;
+                    scannerTimer.Stop();
+                    bufferTimer.Start();
+                }
+
+                else if (keys == 14)
+                {
+                    isStatus = 2;
+                    bufferTimer.Stop();
+                    keyTimer.Start();
+                }
+
+                else if(keys > 29)
                 {
                     lart++;
                     keys = 0;
+                    isStatus = 0;
+                    keyTimer.Stop();
                     isReading = false;
                     this.L_Artykuly.Text = lart.ToString();
                 }
