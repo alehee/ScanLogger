@@ -18,25 +18,18 @@ namespace EcomStatSender
 
         private LowLevelKeyboardListener _listener;
 
-        //static string DATABASE_CONNECTION = "datasource=172.19.26.128;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
-        static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        static string DATABASE_CONNECTION = "datasource=172.19.26.128;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        //static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
 
         int sek;
         int min;
         bool isRunning;
         bool isReading = false;
-
-        // 0 - nie ruszone
-        // 1 - skaner git
-        // 2 - przekazane do RFID
-        short isStatus = 0;
+        bool readed = false;
 
         string proces;
         string wybranyProces = "none";
-
-        string[] codeBuffer = new string[50];
-        string singleCodeBuffer = "";
 
         bool goodLogin = false;
         string login = "";
@@ -47,8 +40,7 @@ namespace EcomStatSender
 
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer keyTimer = new System.Windows.Forms.Timer();
-        System.Windows.Forms.Timer scannerTimer = new System.Windows.Forms.Timer();
-        System.Windows.Forms.Timer bufferTimer = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer keyCheckTimer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer logoutTimer = new System.Windows.Forms.Timer();
 
         public EcomStatSender()
@@ -124,37 +116,25 @@ namespace EcomStatSender
         // -----
 
         // SKRYPT ZLICZANIA OGÓLNEGO
-        private void Zliczanie_Ogolne(Object myObject, EventArgs eventArgs)
+        private void Zliczanie(Object myObject, EventArgs eventArgs)
         {
             isReading = false;
+            readed = false;
             keys = 0;
-            isStatus = 0;
         }
         // -----
 
-        // SKRYPT ZLICZANIA SKANERA
-        private void Zliczanie_Skaner(Object myObject, EventArgs eventArgs)
+        // SKRYPT ZŁAPANIA SKANERA
+        private void Zliczanie_Check(Object myObject, EventArgs eventArgs)
         {
-            if(isStatus != 1)
+            if (keys < 14 && isReading == true)
             {
+                keyTimer.Stop();
                 isReading = false;
+                readed = false;
                 keys = 0;
-                isStatus = 0;
             }
-        }
-        // -----
-
-        // SKRYPT ZLICZANIA SKANERA
-        private void Bufor_Zliczania(Object myObject, EventArgs eventArgs)
-        {
-            if(isStatus != 2)
-            {
-                isReading = false;
-                keys = 0;
-                isStatus = 0;
-                lart++;
-                this.L_Artykuly.Text = lart.ToString();
-            }
+            keyCheckTimer.Stop();
         }
         // -----
 
@@ -179,23 +159,14 @@ namespace EcomStatSender
 
             // ZLICZANIE KLAWISZY
             keyTimer.Stop();
-            keyTimer.Interval = 500;
-            keyTimer.Tick += new EventHandler(Zliczanie_Ogolne);
-            // keyTimer.Start();
+            keyTimer.Interval = 1000;
+            keyTimer.Tick += new EventHandler(Zliczanie);
             // -----
 
-            // ZLICZANIE TIMERA
-            scannerTimer.Stop();
-            scannerTimer.Interval = 500;
-            scannerTimer.Tick += new EventHandler(Zliczanie_Skaner);
-            // scannerTimer.Start();
-            // -----
-
-            // BUFOR ZLICZANIA
-            bufferTimer.Stop();
-            bufferTimer.Interval = 100;
-            bufferTimer.Tick += new EventHandler(Bufor_Zliczania);
-            // bufferTimer.Start();
+            // ZLICZANIE KLAWISZY
+            keyCheckTimer.Stop();
+            keyCheckTimer.Interval = 100;
+            keyCheckTimer.Tick += new EventHandler(Zliczanie_Check);
             // -----
 
             _listener = new LowLevelKeyboardListener();
@@ -381,7 +352,7 @@ namespace EcomStatSender
                     if(isReading == false) 
                     { 
                         isReading = true;
-                        scannerTimer.Start();
+                        keyTimer.Start();
                     }
                 }
             }
@@ -395,26 +366,24 @@ namespace EcomStatSender
 
                 if(keys > 12)
                 {
-                    isStatus = 1;
-                    scannerTimer.Stop();
-                    bufferTimer.Start();
+                    if(readed == false){
+                        lart++;
+                        this.L_Artykuly.Text = lart.ToString();
+                        readed = true;
+                    }
                 }
 
-                else if (keys == 14)
+                if(keys == 13)
                 {
-                    isStatus = 2;
-                    bufferTimer.Stop();
-                    keyTimer.Start();
+                    keyCheckTimer.Start();
                 }
 
-                else if(keys > 29)
+                if(keys > 29)
                 {
-                    lart++;
-                    keys = 0;
-                    isStatus = 0;
                     keyTimer.Stop();
                     isReading = false;
-                    this.L_Artykuly.Text = lart.ToString();
+                    readed = false;
+                    keys = 0;
                 }
             }
         }
