@@ -165,11 +165,10 @@
             // L_Wersja
             // 
             this.L_Wersja.AutoSize = true;
-            this.L_Wersja.Location = new System.Drawing.Point(246, 9);
+            this.L_Wersja.Location = new System.Drawing.Point(270, 9);
             this.L_Wersja.Name = "L_Wersja";
-            this.L_Wersja.Size = new System.Drawing.Size(43, 13);
+            this.L_Wersja.Size = new System.Drawing.Size(0, 13);
             this.L_Wersja.TabIndex = 11;
-            this.L_Wersja.Text = "Wersja:";
             // 
             // L_Haslo
             // 

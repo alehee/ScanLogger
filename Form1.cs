@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using MySql.Data.MySqlClient;
 
 namespace EcomStatSender
@@ -14,12 +9,12 @@ namespace EcomStatSender
     public partial class EcomStatSender : Form
     {
         static string PROGRAM_NAME = "EcomStatSender";
-        static string PROGRAM_VERSION = "0.1";
+        static string PROGRAM_VERSION = "0.2";
 
         private LowLevelKeyboardListener _listener;
 
-        static string DATABASE_CONNECTION = "datasource=172.19.26.128;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
-        //static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        //static string DATABASE_CONNECTION = "datasource=172.19.26.128;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
 
         int sek;
@@ -144,7 +139,7 @@ namespace EcomStatSender
             min = 0;
             isRunning = false;
 
-            L_Wersja.Text = "Wersja: " + PROGRAM_VERSION;
+            L_Wersja.Text = PROGRAM_VERSION;
 
             // WYLOGOWANIE PO 10 MIN
             logoutTimer.Stop();
@@ -198,8 +193,7 @@ namespace EcomStatSender
                         }
                         else
                         {
-                            this.L_Error.Text = "Wersja programu jest nieaktualna!";
-                            this.L_Error.Visible = true;
+                            updateProgram();
                         }
                     }
                 }
@@ -686,6 +680,20 @@ namespace EcomStatSender
             this.L_Login.Visible = true;
             this.TB_Haslo.Visible = true;
             this.TB_Login.Visible = true;
+        }
+
+        private void updateProgram()
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("..\\Cheese_Updater.exe");
+                Application.Exit();
+            }
+            catch
+            {
+                this.L_Error.Text = "Wystąpił błąd podczas aktualizacji!";
+                this.L_Error.Visible = true;
+            }
         }
     }
 }
