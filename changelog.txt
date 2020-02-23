@@ -4,6 +4,7 @@ Nowości:
 - przycisk wylogowania
 - informacja kto jest zalogowany
 - automatyczne wylogowanie po 10 min
+- skaner dziła
 
 Naprawione błędy:
 - zwiększenie efektywności programu
