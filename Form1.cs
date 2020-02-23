@@ -9,7 +9,7 @@ namespace EcomStatSender
     public partial class EcomStatSender : Form
     {
         static string PROGRAM_NAME = "EcomStatSender";
-        static string PROGRAM_VERSION = "0.2";
+        static string PROGRAM_VERSION = "0.1";
 
         private LowLevelKeyboardListener _listener;
 

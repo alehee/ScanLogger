@@ -52,6 +52,8 @@
             this.B_Entropy = new System.Windows.Forms.Button();
             this.B_Logout = new System.Windows.Forms.Button();
             this.L_Active = new System.Windows.Forms.Label();
+            this.PIC_Logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PIC_Logo)).BeginInit();
             this.SuspendLayout();
             // 
             // L_Login
@@ -323,12 +325,23 @@
             this.L_Active.TabIndex = 28;
             this.L_Active.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // PIC_Logo
+            // 
+            this.PIC_Logo.Image = global::EcomStatSender.Properties.Resources.Cheese_Software_Text_Black;
+            this.PIC_Logo.Location = new System.Drawing.Point(6, 391);
+            this.PIC_Logo.Name = "PIC_Logo";
+            this.PIC_Logo.Size = new System.Drawing.Size(100, 50);
+            this.PIC_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PIC_Logo.TabIndex = 29;
+            this.PIC_Logo.TabStop = false;
+            // 
             // EcomStatSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(314, 439);
+            this.Controls.Add(this.PIC_Logo);
             this.Controls.Add(this.L_Active);
             this.Controls.Add(this.B_Logout);
             this.Controls.Add(this.B_Entropy);
@@ -356,6 +369,7 @@
             this.Name = "EcomStatSender";
             this.Text = "Liczpak";
             this.Load += new System.EventHandler(this.EcomStatSender_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PIC_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,6 +401,7 @@
         private System.Windows.Forms.Button B_Entropy;
         private System.Windows.Forms.Button B_Logout;
         private System.Windows.Forms.Label L_Active;
+        private System.Windows.Forms.PictureBox PIC_Logo;
     }
 }
 
