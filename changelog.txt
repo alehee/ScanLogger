@@ -1,11 +1,13 @@
-0.2.0 --- 
+1.0.0 --- 26.02.2020
 
 Nowości:
 - przycisk wylogowania
 - informacja kto jest zalogowany
 - automatyczne wylogowanie po 10 min
-- skaner dziła
+- skaner działa
+- implementacja auto-updater
 
 Naprawione błędy:
 - zwiększenie efektywności programu
 - czytelniejsze błędy programu
+- optymalizacja kodu
