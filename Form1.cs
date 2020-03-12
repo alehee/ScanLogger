@@ -9,7 +9,7 @@ namespace EcomStatSender
     public partial class EcomStatSender : Form
     {
         static string PROGRAM_NAME = "EcomStatSender";
-        static string PROGRAM_VERSION = "1.0.0";
+        static string PROGRAM_VERSION = "1.0.1";
 
         private LowLevelKeyboardListener _listener;
 
@@ -234,6 +234,7 @@ namespace EcomStatSender
                     isRunning = true;
                     this.B_StartStop.ForeColor = Color.Red;
                     this.B_StartStop.Text = "STOP";
+                    this.B_ZmienProces.Focus();
                     this.B_ZmienProces.Enabled = false;
                     this.B_Logout.Visible = false;
                     myTimer.Interval = 1000;
@@ -246,6 +247,7 @@ namespace EcomStatSender
                     this.L_Error.Visible = true;
                     logoutTimer.Start();
                 }
+                
             }
             // -----
 
