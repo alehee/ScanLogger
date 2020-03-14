@@ -9,7 +9,7 @@ namespace EcomStatSender
     public partial class EcomStatSender : Form
     {
         static string PROGRAM_NAME = "EcomStatSender";
-        static string PROGRAM_VERSION = "1.0.1";
+        static string PROGRAM_VERSION = "1.0.2";
 
         private LowLevelKeyboardListener _listener;
 
@@ -116,6 +116,7 @@ namespace EcomStatSender
             isReading = false;
             readed = false;
             keys = 0;
+            keyTimer.Stop();
         }
         // -----
 
@@ -160,7 +161,7 @@ namespace EcomStatSender
 
             // ZLICZANIE KLAWISZY
             keyCheckTimer.Stop();
-            keyCheckTimer.Interval = 100;
+            keyCheckTimer.Interval = 200;
             keyCheckTimer.Tick += new EventHandler(Zliczanie_Check);
             // -----
 
@@ -341,40 +342,32 @@ namespace EcomStatSender
 
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
-            if (isRunning && isReading == false)
+            if (isRunning == true && isReading == false)
             {
-                if(e.KeyPressed < 59 || e.KeyPressed > 47)
+                if(e.KeyPressed < 59 && e.KeyPressed > 47)
                 {
-                    if(isReading == false) 
-                    { 
+                        keys++;
                         isReading = true;
                         keyTimer.Start();
-                    }
                 }
             }
 
-            else if (isReading)
+            else if (isReading == true)
             {
-                if (e.KeyPressed < 59 || e.KeyPressed > 47)
+                if (e.KeyPressed < 59 && e.KeyPressed > 47)
                 {
                     keys++;
                 }
 
-                if(keys > 12)
+                if(keys == 13 && readed == false)
                 {
-                    if(readed == false){
-                        lart++;
-                        this.L_Artykuly.Text = lart.ToString();
-                        readed = true;
-                    }
-                }
-
-                if(keys == 13)
-                {
+                    lart++;
+                    this.L_Artykuly.Text = lart.ToString();
+                    readed = true;
                     keyCheckTimer.Start();
                 }
 
-                if(keys > 29)
+                else if(keys == 30)
                 {
                     keyTimer.Stop();
                     isReading = false;
