@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
 
@@ -22,6 +23,7 @@ namespace EcomStatSender
         bool isRunning;
         bool isReading = false;
         bool readed = false;
+        short isSkipable = 0;
 
         string proces;
         string wybranyProces = "none";
@@ -116,6 +118,7 @@ namespace EcomStatSender
             isReading = false;
             readed = false;
             keys = 0;
+            isSkipable = 0;
             keyTimer.Stop();
         }
         // -----
@@ -129,6 +132,7 @@ namespace EcomStatSender
                 isReading = false;
                 readed = false;
                 keys = 0;
+                isSkipable = 0;
             }
             keyCheckTimer.Stop();
         }
@@ -271,8 +275,21 @@ namespace EcomStatSender
                 this.B_Logout.Visible = true;
 
                 logoutTimer.Start();
+
+                Process devManViewProc = new Process();
+                devManViewProc.StartInfo.FileName = @"DevManView.exe";
+                devManViewProc.StartInfo.Arguments = "/disable \"Rodzajowy koncentrator USB\"";
+                devManViewProc.Start();
+                devManViewProc.WaitForExit();
+
+                Thread.Sleep(500);
+
+                devManViewProc.StartInfo.Arguments = "/enable \"Rodzajowy koncentrator USB\"";
+                devManViewProc.Start();
+                devManViewProc.WaitForExit();
             }
             // -----
+            this.L_Czas.Focus();
         }
 
         private void B_Login_Click(object sender, EventArgs e)
@@ -350,10 +367,21 @@ namespace EcomStatSender
                         isReading = true;
                         keyTimer.Start();
                 }
+
+                if (e.KeyPressed == 77)
+                    isSkipable = 2;
+
+                if (e.KeyPressed == 53)
+                    isSkipable = 1;
             }
 
             else if (isReading == true)
             {
+                if(keys == 1 && e.KeyPressed == 56)
+                {
+                    isSkipable = 2;
+                }
+
                 if (e.KeyPressed < 59 && e.KeyPressed > 47)
                 {
                     keys++;
@@ -361,10 +389,12 @@ namespace EcomStatSender
 
                 if(keys == 13 && readed == false)
                 {
-                    lart++;
+                    if(isSkipable == 0)
+                        lart++;
                     this.L_Artykuly.Text = lart.ToString();
                     readed = true;
                     keyCheckTimer.Start();
+                    isSkipable = 0;
                 }
 
                 else if(keys == 30)

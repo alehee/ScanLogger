@@ -1,3 +1,13 @@
+1.0.3 ---
+
+Nowości:
+- usuwanie profilu na stronie
+- podgląd wyników dla pracowników
+
+Naprawione błędy:
+- wyłączony focus na starcie i końcu
+
+
 1.0.0 --- 26.02.2020
 
 Nowości:
