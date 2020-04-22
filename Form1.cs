@@ -14,8 +14,8 @@ namespace EcomStatSender
 
         private LowLevelKeyboardListener _listener;
 
-        //static string DATABASE_CONNECTION = "datasource=172.19.26.103;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
-        static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        static string DATABASE_CONNECTION = "datasource=172.19.26.103;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
+        //static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
         string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
 
         int sek;
@@ -278,13 +278,13 @@ namespace EcomStatSender
 
                 Process devManViewProc = new Process();
                 devManViewProc.StartInfo.FileName = @"DevManView.exe";
-                devManViewProc.StartInfo.Arguments = "/disable \"Rodzajowy koncentrator USB\"";
+                devManViewProc.StartInfo.Arguments = "/disable \"Urządzenie klawiatury HID\"";
                 devManViewProc.Start();
                 devManViewProc.WaitForExit();
 
                 Thread.Sleep(500);
 
-                devManViewProc.StartInfo.Arguments = "/enable \"Rodzajowy koncentrator USB\"";
+                devManViewProc.StartInfo.Arguments = "/enable \"Urządzenie klawiatury HID\"";
                 devManViewProc.Start();
                 devManViewProc.WaitForExit();
             }
