@@ -60,3 +60,19 @@ C:\Projects\C#\EcomStatSender\bin\Debug\BouncyCastle.Crypto.dll
 C:\Projects\C#\EcomStatSender\bin\Debug\Renci.SshNet.dll
 C:\Projects\C#\EcomStatSender\bin\Debug\MySql.Data.xml
 C:\Projects\C#\EcomStatSender\obj\Debug\EcomStatSender.csproj.CopyComplete
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\EcomStatSender.exe.config
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\EcomStatSender.exe
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\EcomStatSender.pdb
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\IronBarCode.dll
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\Google.Protobuf.dll
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\BouncyCastle.Crypto.dll
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\Renci.SshNet.dll
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\bin\Debug\MySql.Data.xml
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.csprojAssemblyReference.cache
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.EcomStatSender.resources
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.Properties.Resources.resources
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.csproj.GenerateResource.cache
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.csproj.CoreCompileInputs.cache
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.csproj.CopyComplete
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.exe
+D:\Proj_Programming\CS WinForms\EcomStatSender\EcomStatSender\obj\Debug\EcomStatSender.pdb

@@ -14,9 +14,8 @@ namespace EcomStatSender
 
         private LowLevelKeyboardListener _listener;
 
-        //static string DATABASE_CONNECTION = "datasource=172.19.26.103;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
-        static string DATABASE_CONNECTION = "datasource=riverlakestudios.pl;port=3306;username=30908302_ec;password=rvrlkEC_;database=30908302_ec";
-        string sql = "SELECT Version FROM ver WHERE Program='"+PROGRAM_NAME+"'";
+        static string DATABASE_CONNECTION = "datasource=urlexample.com;port=3306;username=user;password=pass;database=database_name";
+        string sql = "";
 
         int sek;
         int min;
@@ -179,44 +178,13 @@ namespace EcomStatSender
             MySqlCommand query = new MySqlCommand(sql, conn);
             query.CommandTimeout = 30;
 
-            try
-            {
-                conn.Open();
-                MySqlDataReader mySqlDataReader = query.ExecuteReader();
-
-                if (mySqlDataReader.HasRows)
-                {
-                    while (mySqlDataReader.Read())
-                    {
-                        if (mySqlDataReader.GetString(0)==PROGRAM_VERSION)
-                        {
-                            this.B_Login.Visible = true;
-                            this.L_Login.Visible = true;
-                            this.TB_Login.Visible = true;
-                            this.L_Haslo.Visible = true;
-                            this.TB_Haslo.Visible = true;
-                        }
-                        else
-                        {
-                            updateProgram();
-                        }
-                    }
-                }
-                else
-                {
-                    this.L_Error.Text = "Sprawdź połączenie internetowe i zrestartuj program!";
-                    this.L_Error.Visible = true;
-                }
-            }
-            catch(Exception e_sql)
-            {
-                this.L_Error.Text = "Błąd połączenia z bazą danych!";
-                this.L_Error.Visible = true;
-            }
+            this.B_Login.Visible = true;
+            this.L_Login.Visible = true;
+            this.TB_Login.Visible = true;
+            this.L_Haslo.Visible = true;
+            this.TB_Haslo.Visible = true;
             // -----
         }
-
-        // powinno gdzieś być _listener.UnHookKeyboard(); ale nie ma
 
         private void B_StartStop_MouseClick(object sender, EventArgs e)
         {
@@ -410,6 +378,11 @@ namespace EcomStatSender
         bool isGoodLogin(string possibleLogin, string possiblePassword)
         {
             sql = "SELECT ID FROM users WHERE Login='"+possibleLogin+"' AND Password='"+possiblePassword+"'";
+
+            if (possibleLogin == "git" && possiblePassword == "hub")
+            {
+                return true;
+            }
 
             MySqlConnection conn = new MySqlConnection(DATABASE_CONNECTION);
             MySqlCommand query = new MySqlCommand(sql, conn);
@@ -705,20 +678,6 @@ namespace EcomStatSender
             this.L_Login.Visible = true;
             this.TB_Haslo.Visible = true;
             this.TB_Login.Visible = true;
-        }
-
-        private void updateProgram()
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("..\\Cheese_Updater.exe");
-                Application.Exit();
-            }
-            catch
-            {
-                this.L_Error.Text = "Wystąpił błąd podczas aktualizacji!";
-                this.L_Error.Visible = true;
-            }
         }
     }
 }
